@@ -2,15 +2,17 @@ package ru.practicum.exploreWithMe.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.exploreWithMe.EndpointHitDto;
 import ru.practicum.exploreWithMe.ViewStatsDto;
+import ru.practicum.exploreWithMe.constant.EwmConstants;
 import ru.practicum.exploreWithMe.service.StatisticsService;
 import ru.practicum.exploreWithMe.validation.Create;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -28,7 +30,10 @@ public class StatisticsController {
 
     @GetMapping("/stats")
     @ResponseStatus(HttpStatus.OK)
-    public List<ViewStatsDto> getStatistics(@RequestParam Timestamp start, @RequestParam Timestamp end,
+    public List<ViewStatsDto> getStatistics(@RequestParam
+                                            @DateTimeFormat(pattern = EwmConstants.DATE_FORMAT) LocalDateTime start,
+                                            @RequestParam
+                                            @DateTimeFormat(pattern = EwmConstants.DATE_FORMAT) LocalDateTime end,
                                             @RequestParam(required = false) List<String> uris,
                                             @RequestParam(defaultValue = "false") boolean unique) {
         log.info("Получение статистики с параметрами \n start: {}, \n end: {}, \n uris: {}, \n unique: {}",
