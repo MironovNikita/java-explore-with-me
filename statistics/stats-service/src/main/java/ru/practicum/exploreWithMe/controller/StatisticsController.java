@@ -35,7 +35,7 @@ public class StatisticsController {
                                             @RequestParam
                                             @DateTimeFormat(pattern = EwmConstants.DATE_FORMAT) LocalDateTime end,
                                             @RequestParam(required = false) List<String> uris,
-                                            @RequestParam(defaultValue = "false") boolean unique) {
+                                            @RequestParam(defaultValue = "false") Boolean unique) {
         log.info("Получение статистики с параметрами \n start: {}, \n end: {}, \n uris: {}, \n unique: {}",
                 start, end, uris, unique);
         return statisticsService.getStatistics(start, end, uris, unique);
