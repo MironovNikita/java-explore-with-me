@@ -57,7 +57,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                     String.format("Невозможно обновить время события на %s. Оно не удовлетворяет требованиям",
                             eventDto.getEventDate()));
         }
-        
+
         Event event = eventMapper.transformCreateEventDtoToEvent(eventDto);
 
         event.setCategory(category);
@@ -104,7 +104,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
                         dtoByUser.getEventDate());
                 throw new EventStartAfterHoursException(
                         String.format("Невозможно обновить время события на %s. Оно не удовлетворяет требованиям",
-                        dtoByUser.getEventDate()));
+                                dtoByUser.getEventDate()));
             }
             event.setEventDate(dtoByUser.getEventDate());
         }
