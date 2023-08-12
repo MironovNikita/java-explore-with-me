@@ -51,11 +51,11 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         if (compilationDto.getPinned() != null) {
             compilation.setPinned(compilationDto.getPinned());
         }
-        if (compilationDto.getTitle() != null) {
+        if (compilationDto.getTitle() != null && !compilationDto.getTitle().isBlank()) {
             compilation.setTitle(compilationDto.getTitle());
         }
 
-        return compilationMapper.transformCompilationToFullCompilationDto(compilationRepository.save(compilation));
+        return compilationMapper.transformCompilationToFullCompilationDto(compilation);
     }
 
     @Override

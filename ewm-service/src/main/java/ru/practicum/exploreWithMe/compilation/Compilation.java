@@ -4,6 +4,8 @@ import lombok.*;
 import ru.practicum.exploreWithMe.event.Event;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -18,6 +20,8 @@ public class Compilation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Boolean pinned;
+    @NotBlank(message = "При создании подборки событий заголовок не может быть пустым")
+    @Size(min = 1, max = 50, message = "Заголовок подборки может минимум содержать 1 символ, максимум - 50 символов")
     private String title;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "event_compilations",

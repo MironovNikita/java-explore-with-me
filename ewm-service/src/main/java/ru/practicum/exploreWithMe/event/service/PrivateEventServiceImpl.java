@@ -84,7 +84,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
             throw new EventStateException(String.format("Событие с ID %d уже опубликовано!", eventId));
         }
 
-        if (dtoByUser.getAnnotation() != null) {
+        if (dtoByUser.getAnnotation() != null && !dtoByUser.getAnnotation().isBlank()) {
             event.setAnnotation(dtoByUser.getAnnotation());
         }
 

@@ -40,7 +40,7 @@ public class AdminEventServiceImpl implements AdminEventService {
     public EventFullDto redactEvent(Long eventId, AdminEventUpdateDto eventUpdateDto) {
         Event event = checkEventExistence(eventId);
 
-        if (eventUpdateDto.getAnnotation() != null) {
+        if (eventUpdateDto.getAnnotation() != null && !eventUpdateDto.getAnnotation().isBlank()) {
             event.setAnnotation(eventUpdateDto.getAnnotation());
         }
         if (eventUpdateDto.getCategory() != null) {
