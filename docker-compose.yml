@@ -12,35 +12,30 @@ services:
     depends_on:
       - stats-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats_db_container:5432/statisticsDB
+      SPRING_DATASOURCE_URL: jdbc:postgresql://stats-db:5432/statisticsDB
 
   stats-db:
     image: postgres:14-alpine
     container_name: stats_db_container
-    volumes:
-      - /var/lib/postgresql/data/
     ports:
       - "6541:5432"
     environment:
-      - POSTGRES_DB=statisticsDB
-      - POSTGRES_USER=ewmuser
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: statisticsDB
+      POSTGRES_USER: ewmuser
+      POSTGRES_PASSWORD: postgres
 
   ewm-service:
     build: ./ewm-service
     image: ewm_service_image
     container_name: ewm_service_container
-    restart: on-failure
     ports:
       - "8080:8080"
     depends_on:
       - stats-server
       - ewm-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm_db_container:5432/serviceDB
-      - POSTGRES_USER=ewmuser
-      - POSTGRES_PASSWORD=postgres
-      - STAT-SERVICE-SERVER.URL=http://localhost:9090
+      EWM_STAT_SERVER_URL: http://stats-server:9090/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://ewm-db:5432/serviceDB
 
   ewm-db:
     image: postgres:14-alpine
@@ -48,6 +43,6 @@ services:
     ports:
       - "6540:5432"
     environment:
-      - POSTGRES_DB=serviceDB
-      - POSTGRES_USER=ewmuser
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: serviceDB
+      POSTGRES_USER: ewmuser
+      POSTGRES_PASSWORD: postgres
