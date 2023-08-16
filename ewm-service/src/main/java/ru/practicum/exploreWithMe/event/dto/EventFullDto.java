@@ -1,13 +1,18 @@
 package ru.practicum.exploreWithMe.event.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.practicum.exploreWithMe.category.dto.CategoryDto;
+import ru.practicum.exploreWithMe.comment.dto.CommentShortDto;
 import ru.practicum.exploreWithMe.constant.EwmConstants;
 import ru.practicum.exploreWithMe.event.enums.EventState;
 import ru.practicum.exploreWithMe.user.dto.UserShortDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,4 +38,5 @@ public class EventFullDto {
     private UserShortDto initiator;
     private EventState state;
     private long views;
+    private List<CommentShortDto> comments;
 }
