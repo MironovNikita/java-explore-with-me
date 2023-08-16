@@ -3,7 +3,7 @@
 # Explore With Me
 
 ## Ссылка на pull-request
-
+https://github.com/MironovNikita/java-explore-with-me/pull/5
 
 ## Содержание
 
