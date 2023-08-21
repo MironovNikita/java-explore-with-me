@@ -2,6 +2,7 @@ package ru.practicum.exploreWithMe.event;
 
 import lombok.*;
 import ru.practicum.exploreWithMe.category.Category;
+import ru.practicum.exploreWithMe.comment.Comment;
 import ru.practicum.exploreWithMe.common.validation.Create;
 import ru.practicum.exploreWithMe.common.validation.Update;
 import ru.practicum.exploreWithMe.event.enums.EventState;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -80,4 +82,8 @@ public class Event {
     @Size(groups = {Create.class, Update.class}, max = 200,
             message = "Максимальный размер заголовка события - 200 символов")
     private String title;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id")
+    private List<Comment> comments;
 }
