@@ -70,7 +70,7 @@ _Микросервис статистики_ реализует функцио�
 ![events](https://github.com/MironovNikita/java-explore-with-me/blob/main/res/scr3.png)
 
 - `categories` - категории;\
-- ![categories](https://github.com/MironovNikita/java-explore-with-me/blob/main/res/scr4.png)
+![categories](https://github.com/MironovNikita/java-explore-with-me/blob/main/res/scr4.png)
 
 - `compilations` - подборки;
 - `event_compilations` - подборки событий;
